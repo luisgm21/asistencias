@@ -15,6 +15,7 @@
             <th>Fecha Nacimiento</th>
         </tr>
         {% for persona in personas %}
+            {% comment %} Solo se lista las personas con cuenta Bancaria {% endcomment %}
             {% if persona.cuentabancaria %}
                 <tr>
                     <td>{{ persona.nombre_completo }}</td>

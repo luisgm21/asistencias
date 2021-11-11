@@ -1,7 +1,6 @@
 from typing import Tuple
 from django.db import models
 
-#Definimos el modelo Cuenta
 
    
 
@@ -32,7 +31,9 @@ class EstadoSalud(models.Model):
     posee_desnutricion = models.BooleanField(null=True)
     observaciones = models.TextField(blank=True)
 
+#Definimos el modelo Cuenta
 class CuentaBancaria(models.Model):
+   #Definimos la tupla con las opciones de banco
    OPCIONES_BANCO = (
        ('nacion','Nacion'),
        ('santader','Santander'),
@@ -45,5 +46,6 @@ class CuentaBancaria(models.Model):
    banco_emisor = models.CharField(max_length=100,choices=OPCIONES_BANCO)
    persona = models.OneToOneField(Persona, on_delete=models.CASCADE,null=True,blank=True)
    
+   #Hacemos que muestre el cbu en lugar de la referencia
    def __str__(self):
         return f"CBU:{self.cbu}"

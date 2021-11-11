@@ -24,7 +24,9 @@ def crear_cuentaBancaria(request):
 
     return render(request, 'persona/crecuenta.html',
                   {'form': cuenta_form})
+#Validacion de Login
 @login_required
+#lista de personas ordenados por su dni
 def persona_lista(request):
     #Hacemos una consulta con todos los registro de persona y las ordenamos de forma ascendente con respecto a dni
     personas = Persona.objects.all().order_by('dni')
