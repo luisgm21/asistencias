@@ -1,5 +1,9 @@
+from typing import Tuple
 from django.db import models
 
+#Definimos el modelo Cuenta
+
+   
 
 class Persona(models.Model):
     GENERO_OPCIONES = (
@@ -22,9 +26,24 @@ class Persona(models.Model):
 
 
 class EstadoSalud(models.Model):
-    persona = models.OneToOneField(Persona, on_delete=models.CASCADE)
+    
     es_discapacitado = models.BooleanField(null=True)
     posee_obesidad = models.BooleanField(null=True)
     posee_desnutricion = models.BooleanField(null=True)
     observaciones = models.TextField(blank=True)
 
+class CuentaBancaria(models.Model):
+   OPCIONES_BANCO = (
+       ('nacion','Nacion'),
+       ('santader','Santander'),
+       ('galicia','Galicia')
+   )
+   
+   numero_cuenta = models.IntegerField(unique=True)
+   cbu = models.IntegerField()
+   alias = models.CharField(max_length=100,unique=True)
+   banco_emisor = models.CharField(max_length=100,choices=OPCIONES_BANCO)
+   persona = models.OneToOneField(Persona, on_delete=models.CASCADE,null=True,blank=True)
+   
+   def __str__(self):
+        return f"CBU:{self.cbu}"
